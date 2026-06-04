@@ -29,6 +29,8 @@ public class HelloController {
 
     @FXML
     public void initialize() {
+        listZaci.getItems().add(new String("Pepa"));
+        listPoznamky.getItems().add(new String("hraje hry pri hodine"));
     }
 
     @FXML
@@ -64,9 +66,11 @@ public class HelloController {
         List<String> zaci = listZaci.getItems();
         List<String> poznamky = listPoznamky.getItems();
 
-        if (zaci.isEmpty() || poznamky.isEmpty()) {
-            labelVybranyZak.setText("Prázdné");
-            labelVybranaPoznamka.setText("Prázdné");
+
+
+        if (zaci.isEmpty() ||  poznamky.isEmpty()) {
+            labelVybranyZak.setText("Něco je prázdné");
+            labelVybranaPoznamka.setText("Něco je prázdné");
             return;
         }
 
