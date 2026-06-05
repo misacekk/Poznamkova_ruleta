@@ -90,6 +90,16 @@
                         </VBox>
                     </children>
                 </VBox>
+            <Button mnemonicParsing="false" onAction="#onZaka" text="Spin žák">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#onPoznamka" text="Spin poznámka">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
             </children>
         </VBox>
     </center>
