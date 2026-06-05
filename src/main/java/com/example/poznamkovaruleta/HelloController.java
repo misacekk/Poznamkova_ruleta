@@ -1,6 +1,8 @@
 package com.example.poznamkovaruleta;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +14,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -32,17 +35,36 @@ public class HelloController {
     private Label labelVybranyZak;
     @FXML
     private Label labelVybranaPoznamka;
+    @FXML
+    private Label labelSkrytaHlaska;
 
     private final Random random = new Random();
+
+    ArrayList<String> hlasky = new ArrayList<String>();
 
     @FXML
     public void initialize() {
         listZaci.getItems().add(new String("Pepa"));
         listPoznamky.getItems().add(new String("hraje hry pri hodine"));
+        listZaci.getItems().add(new String("Franta"));
+        listPoznamky.getItems().add(new String("šikanuje stevena"));
+        listZaci.getItems().add(new String("Ondra"));
+        listPoznamky.getItems().add(new String("blázní"));
+        hlasky.add("Smaž to, nebo tě smažu já!");
+        hlasky.add("Máš menší váhu než vzduch.");
+        hlasky.add("Na co se to díváš?");
     }
 
     @FXML
-    public void udelejZvuk(){
+    public void nahodHlasky() {
+        int randomHlaska = random.nextInt(hlasky.size());
+
+        labelSkrytaHlaska.setText(hlasky.get(randomHlaska));
+        labelSkrytaHlaska.setTextFill(Color.RED);
+    }
+
+    @FXML
+    public void udelejZvuk() {
         try {
             URL url = getClass().getResource("/com/example/poznamkovaruleta/click.wav");
             if (url != null) {
@@ -51,7 +73,7 @@ public class HelloController {
                 clip.open(audioIn);
                 clip.start();
             } else {
-                System.err.println("Zvukový soubor nebyl nalezen" );
+                System.err.println("Zvukový soubor nebyl nalezen");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,9 +113,7 @@ public class HelloController {
         List<String> zaci = listZaci.getItems();
         List<String> poznamky = listPoznamky.getItems();
 
-
-
-        if (zaci.isEmpty() ||  poznamky.isEmpty()) {
+        if (zaci.isEmpty() || poznamky.isEmpty()) {
             labelVybranyZak.setText("Něco je prázdné");
             labelVybranaPoznamka.setText("Něco je prázdné");
             return;
@@ -106,6 +126,7 @@ public class HelloController {
         labelVybranyZak.setTextFill(javafx.scene.paint.Color.GREEN);
         labelVybranaPoznamka.setText(poznamky.get(randomPoznamka));
         labelVybranaPoznamka.setTextFill(javafx.scene.paint.Color.GREEN);
+        nahodHlasky();
         udelejZvuk();
     }
 

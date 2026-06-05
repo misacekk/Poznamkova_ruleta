@@ -87,6 +87,8 @@
                         <VBox alignment="CENTER" spacing="2.0">
                             <Label text="Poznámka:" />
                             <Label fx:id="labelVybranaPoznamka" textAlignment="CENTER" wrapText="true" />
+                     <Label text="Skrytá hláška:" />
+                     <Label fx:id="labelSkrytaHlaska" />
                         </VBox>
                     </children>
                 </VBox>
