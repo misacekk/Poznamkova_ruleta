@@ -81,7 +81,7 @@ public class HelloController {
             writer.newLine();
             writer.write("Jméno poznámky: " + vybranaPoznamka);
             writer.newLine();
-            writer.write("-------------------------");
+            writer.write("-------------------------------");
             writer.newLine();
             System.out.println("Uloženo.");
         } catch (IOException e) {
