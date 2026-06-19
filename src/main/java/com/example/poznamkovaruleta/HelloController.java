@@ -1,8 +1,10 @@
 package com.example.poznamkovaruleta;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
@@ -73,19 +75,20 @@ public class HelloController {
 
         File soubor = new File("save.txt");
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(soubor,true))) {
-                writer.write("Jméno žáka: " + vybranyZak);
-                writer.newLine();
-                writer.write("Jméno poznámky: " + vybranaPoznamka);
-                writer.newLine();
-                writer.write("-------------------------");
-                writer.newLine();
-
-                System.out.println("Uloženo.");
-            } catch (IOException e) {
-                System.out.println("Error!");
-                e.printStackTrace();
-            }
+        if (!labelVybranyZak.getText().isBlank() &&  !labelVybranaPoznamka.getText().isBlank()) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(soubor, true))) {
+            writer.write("Jméno žáka: " + vybranyZak);
+            writer.newLine();
+            writer.write("Jméno poznámky: " + vybranaPoznamka);
+            writer.newLine();
+            writer.write("-------------------------");
+            writer.newLine();
+            System.out.println("Uloženo.");
+        } catch (IOException e) {
+            System.out.println("Error!");
+            e.printStackTrace();
+        }
+        }
     }
 
     @FXML
